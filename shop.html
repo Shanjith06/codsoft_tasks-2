@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop All Products — UrbanCart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="shop">
+
+<div id="loading-screen">
+  <div class="loader-mark">Urban<span>Cart</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<header id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">Urban<span class="dot">Cart</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="dm-toggle" title="Toggle dark mode"><span class="dm-knob"><i class="fa-solid fa-sun"></i></span></button>
+      <button class="icon-btn" id="search-trigger" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="icon-btn" id="wishlist-trigger" title="Wishlist" style="position:relative;">
+        <i class="fa-solid fa-heart"></i><span class="count-badge wishlist-count">0</span>
+      </button>
+      <a href="cart.html" class="icon-btn" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i><span class="count-badge cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<nav class="mobile-drawer" id="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart</a>
+</nav>
+
+<div class="search-overlay" id="search-overlay">
+  <div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass" style="color:var(--text-muted)"></i>
+      <input type="text" id="search-input" placeholder="Search for products, categories...">
+      <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="search-results" style="width:min(640px,90vw); margin-top:10px;"></div>
+  </div>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container">
+    <span class="eyebrow">Full Catalog</span>
+    <h1>Shop All Products</h1>
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Shop</span></div>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="shop-layout">
+
+      <!-- Filters -->
+      <aside class="filters-panel">
+        <div class="filter-block">
+          <h4>Category</h4>
+          <label class="filter-check"><input type="checkbox" value="Men" class="cat-filter"> Men</label>
+          <label class="filter-check"><input type="checkbox" value="Women" class="cat-filter"> Women</label>
+          <label class="filter-check"><input type="checkbox" value="Footwear" class="cat-filter"> Footwear</label>
+          <label class="filter-check"><input type="checkbox" value="Accessories" class="cat-filter"> Accessories</label>
+          <label class="filter-check"><input type="checkbox" value="Electronics" class="cat-filter"> Electronics</label>
+          <label class="filter-check"><input type="checkbox" value="Bags" class="cat-filter"> Bags</label>
+        </div>
+        <div class="filter-block">
+          <h4>Price Range</h4>
+          <div class="price-range-vals"><span id="price-min-label">$0</span><span id="price-max-label">$150</span></div>
+          <input type="range" id="price-range" min="0" max="150" value="150">
+        </div>
+        <div class="filter-block">
+          <h4>Rating</h4>
+          <div class="rating-filter" style="display:flex; flex-direction:column; gap:10px;">
+            <label class="filter-check"><input type="radio" name="rating" value="0" checked> Any rating</label>
+            <label class="filter-check"><input type="radio" name="rating" value="4.5"> <span>★★★★★</span>&nbsp;4.5 &amp; up</label>
+            <label class="filter-check"><input type="radio" name="rating" value="4"> <span>★★★★☆</span>&nbsp;4.0 &amp; up</label>
+            <label class="filter-check"><input type="radio" name="rating" value="3"> <span>★★★☆☆</span>&nbsp;3.0 &amp; up</label>
+          </div>
+        </div>
+        <div class="filter-block">
+          <h4>Availability</h4>
+          <label class="filter-check"><input type="checkbox" id="filter-sale"> On Sale</label>
+          <label class="filter-check"><input type="checkbox" id="filter-new"> New Arrivals</label>
+        </div>
+        <button class="btn btn-ghost btn-block" id="clear-filters">Clear All Filters</button>
+      </aside>
+
+      <!-- Product Grid -->
+      <div>
+        <div class="shop-toolbar">
+          <div class="shop-search">
+            <i class="fa-solid fa-magnifying-glass" style="color:var(--text-muted)"></i>
+            <input type="text" id="shop-search-input" placeholder="Search products in shop...">
+          </div>
+          <div class="toolbar-right">
+            <span class="result-count" id="result-count">24 products</span>
+            <select class="sort-select" id="sort-select">
+              <option value="featured">Sort: Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+              <option value="newest">Newest</option>
+            </select>
+            <div class="view-toggle">
+              <button class="active" id="view-grid" title="Grid view"><i class="fa-solid fa-grip"></i></button>
+              <button id="view-list" title="List view"><i class="fa-solid fa-list"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-grid" id="shop-product-grid"></div>
+
+        <div class="pagination">
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Urban<span class="dot" style="color:var(--emerald-bright);">Cart</span></a>
+        <p>Modern essentials for city life — apparel, footwear, accessories and electronics, chosen for how they wear, not just how they photograph.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?cat=Men">Men</a></li>
+          <li><a href="shop.html?cat=Women">Women</a></li>
+          <li><a href="shop.html?cat=Footwear">Footwear</a></li>
+          <li><a href="shop.html?cat=Electronics">Electronics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html#faq">FAQs</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size:14.5px; margin-bottom:16px;">Join our list for exclusive offers and new arrivals.</p>
+        <a href="index.html#newsletter" class="btn btn-outline btn-sm" style="border-color:rgba(255,255,255,0.2); color:#fff;">Subscribe</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 UrbanCart. All rights reserved. Demo project — not a real store.</span>
+      <div class="footer-pay"><span>VISA</span><span>MC</span><span>PAYPAL</span><span>AMEX</span></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<div class="modal-overlay" id="quick-view-modal">
+  <div class="modal-box">
+    <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-img"><img src="" alt="Quick view product"></div>
+    <div class="modal-info">
+      <span class="product-cat qv-cat">Category</span>
+      <h2 class="qv-name">Product name</h2>
+      <div class="product-rating"><span class="stars qv-stars"></span> <span class="qv-reviews"></span></div>
+      <div class="product-price-row">
+        <span class="price-now qv-price-now"></span>
+        <span class="price-old qv-price-old"></span>
+      </div>
+      <p class="desc qv-desc"></p>
+      <div class="modal-qty">
+        <span style="font-size:13px; font-weight:600;">Quantity</span>
+        <div class="qty-control">
+          <button data-action="dec">−</button>
+          <input type="text" value="1" readonly>
+          <button data-action="inc">+</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-primary btn-block qv-add-cart"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+        <button class="btn btn-outline qv-add-wish"><i class="fa-solid fa-heart"></i></button>
+      </div>
+      <a href="#" class="qv-view-link" style="margin-top:16px; font-size:13.5px; text-align:center; color:var(--emerald-deep); font-weight:600;">View Full Details →</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/darkmode.js"></script>
+<script>
+(function shopPage(){
+  const grid = document.getElementById("shop-product-grid");
+  const resultCount = document.getElementById("result-count");
+  const searchInput = document.getElementById("shop-search-input");
+  const sortSelect = document.getElementById("sort-select");
+  const priceRange = document.getElementById("price-range");
+  const priceMaxLabel = document.getElementById("price-max-label");
+  const catChecks = document.querySelectorAll(".cat-filter");
+  const saleCheck = document.getElementById("filter-sale");
+  const newCheck = document.getElementById("filter-new");
+  const clearBtn = document.getElementById("clear-filters");
+
+  // Pre-select category from ?cat= query param
+  const params = new URLSearchParams(location.search);
+  const catParam = params.get("cat");
+  if(catParam){
+    catChecks.forEach(c => { if(c.value === catParam) c.checked = true; });
+  }
+
+  function getFilters(){
+    const selectedCats = Array.from(catChecks).filter(c => c.checked).map(c => c.value);
+    const minRating = Number(document.querySelector('input[name="rating"]:checked').value);
+    const maxPrice = Number(priceRange.value);
+    const query = searchInput.value.trim().toLowerCase();
+    return { selectedCats, minRating, maxPrice, query, sale: saleCheck.checked, isNew: newCheck.checked };
+  }
+
+  function applyFilters(){
+    const { selectedCats, minRating, maxPrice, query, sale, isNew } = getFilters();
+    let list = PRODUCTS.filter(p => {
+      if(selectedCats.length && !selectedCats.includes(p.cat)) return false;
+      if(p.rating < minRating) return false;
+      if(p.price > maxPrice) return false;
+      if(query && !p.name.toLowerCase().includes(query) && !p.cat.toLowerCase().includes(query)) return false;
+      if(sale && p.badge !== "sale") return false;
+      if(isNew && p.badge !== "new") return false;
+      return true;
+    });
+
+    switch(sortSelect.value){
+      case "price-asc": list.sort((a,b) => a.price - b.price); break;
+      case "price-desc": list.sort((a,b) => b.price - a.price); break;
+      case "rating": list.sort((a,b) => b.rating - a.rating); break;
+      case "newest": list.sort((a,b) => b.id - a.id); break;
+      default: break; // featured = original order
+    }
+
+    renderProductGrid(grid, list);
+    resultCount.textContent = `${list.length} product${list.length !== 1 ? "s" : ""}`;
+  }
+
+  [...catChecks, saleCheck, newCheck, sortSelect].forEach(el => el.addEventListener("change", applyFilters));
+  document.querySelectorAll('input[name="rating"]').forEach(r => r.addEventListener("change", applyFilters));
+  priceRange.addEventListener("input", () => {
+    priceMaxLabel.textContent = "$" + priceRange.value;
+    applyFilters();
+  });
+  searchInput.addEventListener("input", applyFilters);
+  clearBtn.addEventListener("click", () => {
+    catChecks.forEach(c => c.checked = false);
+    saleCheck.checked = false;
+    newCheck.checked = false;
+    priceRange.value = 150;
+    priceMaxLabel.textContent = "$150";
+    document.querySelector('input[name="rating"][value="0"]').checked = true;
+    searchInput.value = "";
+    sortSelect.value = "featured";
+    applyFilters();
+  });
+
+  document.getElementById("view-grid").addEventListener("click", function(){
+    this.classList.add("active");
+    document.getElementById("view-list").classList.remove("active");
+    grid.style.gridTemplateColumns = "";
+  });
+  document.getElementById("view-list").addEventListener("click", function(){
+    this.classList.add("active");
+    document.getElementById("view-grid").classList.remove("active");
+    grid.style.gridTemplateColumns = "1fr";
+  });
+
+  applyFilters();
+})();
+</script>
+</body>
+</html>

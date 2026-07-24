@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrbanCart — Premium Everyday Essentials</title>
+<meta name="description" content="UrbanCart is a modern e-commerce destination for apparel, footwear, accessories and electronics.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="home">
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <div class="loader-mark">Urban<span>Cart</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- ===================== NAVBAR ===================== -->
+<header id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">Urban<span class="dot">Cart</span></a>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="dm-toggle" title="Toggle dark mode"><span class="dm-knob"><i class="fa-solid fa-sun"></i></span></button>
+      <button class="icon-btn" id="search-trigger" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="icon-btn" id="wishlist-trigger" title="Wishlist" style="position:relative;">
+        <i class="fa-solid fa-heart"></i>
+        <span class="count-badge wishlist-count">0</span>
+      </button>
+      <a href="cart.html" class="icon-btn" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="count-badge cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<nav class="mobile-drawer" id="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart</a>
+</nav>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="search-overlay">
+  <div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass" style="color:var(--text-muted)"></i>
+      <input type="text" id="search-input" placeholder="Search for products, categories...">
+      <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="search-results" style="width:min(640px,90vw); margin-top:10px;"></div>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">New Season Arrivals</span>
+      <h1>Everyday style,<br><em>elevated</em> for the city.</h1>
+      <p>Curated apparel, footwear and accessories built for people who move fast and dress well. Free shipping over $75, always.</p>
+      <div class="hero-cta">
+        <a href="shop.html" class="btn btn-accent">Shop the Collection <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#categories" class="btn btn-outline">Browse Categories</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b data-count="48" data-suffix="K+">0</b><span>Happy Customers</span></div>
+        <div class="hero-stat"><b data-count="1200" data-suffix="+">0</b><span>Products Listed</span></div>
+        <div class="hero-stat"><b data-count="4.8" data-suffix="/5">0</b><span>Average Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="blob"></div>
+      <div class="hero-card hero-card-main">
+        <img src="https://picsum.photos/seed/hero-main/500/560" alt="Featured product">
+      </div>
+      <div class="hero-chip hero-chip-price glass">
+        <i class="fa-solid fa-tag" style="color:var(--emerald)"></i>
+        <div>Today's Price<br><span class="val">$74.50</span></div>
+      </div>
+      <div class="hero-chip hero-chip-rating glass">
+        <i class="fa-solid fa-star" style="color:var(--gold)"></i> 4.8 Rating
+      </div>
+      <div class="hero-chip hero-chip-shipping glass">
+        <i class="fa-solid fa-truck-fast" style="color:var(--emerald)"></i> Free Shipping
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brand strip -->
+<section class="brand-strip">
+  <div class="container">
+    <span class="b-item">VOGUE&nbsp;EDIT</span>
+    <span class="b-item">Nordic Studio</span>
+    <span class="b-item">METRO°</span>
+    <span class="b-item">Fieldwork Co.</span>
+    <span class="b-item">Lumen</span>
+    <span class="b-item">Kinfolk</span>
+  </div>
+</section>
+
+<!-- ===================== PROMO SLIDER (image slider feature) ===================== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="promo-slider glass" style="border-radius:var(--r-xl); overflow:hidden; position:relative;">
+      <div class="promo-track" style="display:flex; transition: transform 0.6s var(--ease);">
+        <div class="promo-slide" style="min-width:100%; display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:50px 60px; gap:30px;">
+          <div>
+            <span class="eyebrow">Limited Drop</span>
+            <h3 style="font-family:var(--font-display); font-size:clamp(24px,3vw,36px);">Outerwear season is here — up to 35% off</h3>
+            <p style="color:var(--text-muted); margin:14px 0 22px;">Jackets, vests and shells for the shoulder season.</p>
+            <a href="shop.html" class="btn btn-primary btn-sm">Shop Outerwear</a>
+          </div>
+          <img src="https://picsum.photos/seed/promo-1/500/280" style="border-radius:var(--r-lg); height:220px; object-fit:cover;" alt="Outerwear promo">
+        </div>
+        <div class="promo-slide" style="min-width:100%; display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:50px 60px; gap:30px;">
+          <div>
+            <span class="eyebrow">Tech Edit</span>
+            <h3 style="font-family:var(--font-display); font-size:clamp(24px,3vw,36px);">Audio & wearables built for daily life</h3>
+            <p style="color:var(--text-muted); margin:14px 0 22px;">Free 2-day shipping on all electronics this week.</p>
+            <a href="shop.html" class="btn btn-primary btn-sm">Shop Electronics</a>
+          </div>
+          <img src="https://picsum.photos/seed/promo-2/500/280" style="border-radius:var(--r-lg); height:220px; object-fit:cover;" alt="Electronics promo">
+        </div>
+        <div class="promo-slide" style="min-width:100%; display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:50px 60px; gap:30px;">
+          <div>
+            <span class="eyebrow">Members Only</span>
+            <h3 style="font-family:var(--font-display); font-size:clamp(24px,3vw,36px);">Sign up and get 20% off your first order</h3>
+            <p style="color:var(--text-muted); margin:14px 0 22px;">Use code WELCOME20 at checkout on any cart.</p>
+            <a href="#newsletter" class="btn btn-primary btn-sm">Join Now</a>
+          </div>
+          <img src="https://picsum.photos/seed/promo-3/500/280" style="border-radius:var(--r-lg); height:220px; object-fit:cover;" alt="Welcome offer promo">
+        </div>
+      </div>
+      <button class="promo-prev" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); width:40px;height:40px;border-radius:50%;background:var(--surface);box-shadow:var(--shadow-sm);z-index:3;"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="promo-next" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:40px;height:40px;border-radius:50%;background:var(--surface);box-shadow:var(--shadow-sm);z-index:3;"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="promo-dots" style="position:absolute; bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:3;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CATEGORIES ===================== -->
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Shop by Category</span>
+        <h2>Find your next favorite piece</h2>
+      </div>
+      <a href="shop.html" class="btn btn-ghost btn-sm">View All Categories</a>
+    </div>
+    <div class="cat-grid">
+      <a href="shop.html?cat=Men" class="cat-card reveal">
+        <img src="https://picsum.photos/seed/cat-men/500/500" alt="Men's category">
+        <div class="cat-overlay"><span>32 Products</span><h3>Men</h3></div>
+      </a>
+      <a href="shop.html?cat=Women" class="cat-card reveal stagger-1">
+        <img src="https://picsum.photos/seed/cat-women/500/500" alt="Women's category">
+        <div class="cat-overlay"><span>41 Products</span><h3>Women</h3></div>
+      </a>
+      <a href="shop.html?cat=Footwear" class="cat-card reveal stagger-2">
+        <img src="https://picsum.photos/seed/cat-shoes/500/500" alt="Footwear category">
+        <div class="cat-overlay"><span>24 Products</span><h3>Footwear</h3></div>
+      </a>
+      <a href="shop.html?cat=Electronics" class="cat-card reveal stagger-3">
+        <img src="https://picsum.photos/seed/cat-tech/500/500" alt="Electronics category">
+        <div class="cat-overlay"><span>18 Products</span><h3>Electronics</h3></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURED PRODUCTS ===================== -->
+<section class="section" style="background:var(--paper-dim);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Curated For You</span>
+        <h2>Featured Products</h2>
+      </div>
+      <a href="shop.html" class="btn btn-outline btn-sm">View All <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="product-grid" id="featured-products"></div>
+  </div>
+</section>
+
+<!-- ===================== LIMITED TIME OFFER ===================== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="offer-banner reveal">
+      <div style="position:relative; z-index:2;">
+        <span class="eyebrow" style="color:var(--emerald-bright);">Flash Sale</span>
+        <h3>Extra 25% off select styles — while stock lasts</h3>
+        <p>Ends soon. Applies automatically at checkout on eligible items.</p>
+        <a href="shop.html" class="btn btn-accent" style="margin-top:20px;">Shop the Sale</a>
+      </div>
+      <div class="countdown" data-countdown style="position:relative; z-index:2;">
+        <div class="cd-box"><b>26</b><span>Hours</span></div>
+        <div class="cd-box"><b>42</b><span>Minutes</span></div>
+        <div class="cd-box"><b>00</b><span>Seconds</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BEST SELLERS ===================== -->
+<section class="section" style="background:var(--paper-dim);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Customer Favorites</span>
+        <h2>Best-Selling Products</h2>
+      </div>
+    </div>
+    <div class="product-grid" id="bestseller-products"></div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Reviews</span>
+        <h2>What our customers say</h2>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <span class="testi-stars">★★★★★</span>
+        <p class="testi-quote">"Delivery was fast and the quality is way above what I expected for the price. My new go-to shop."</p>
+        <div class="testi-person">
+          <img src="https://picsum.photos/seed/person-1/100/100" alt="Customer photo">
+          <div><b>Maya Chen</b><span>Verified Buyer</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal stagger-1">
+        <span class="testi-stars">★★★★★</span>
+        <p class="testi-quote">"The sizing guide was spot on and customer support answered my questions in minutes. Highly recommend."</p>
+        <div class="testi-person">
+          <img src="https://picsum.photos/seed/person-2/100/100" alt="Customer photo">
+          <div><b>Daniel Ruiz</b><span>Verified Buyer</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal stagger-2">
+        <span class="testi-stars">★★★★★</span>
+        <p class="testi-quote">"I've ordered four times now — packaging is beautiful and nothing has ever arrived damaged."</p>
+        <div class="testi-person">
+          <img src="https://picsum.photos/seed/person-3/100/100" alt="Customer photo">
+          <div><b>Priya Nair</b><span>Verified Buyer</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="newsletter reveal" id="newsletter">
+      <span class="eyebrow" style="justify-content:center;">Stay in the loop</span>
+      <h2>Get 10% off your first order</h2>
+      <p>Subscribe for early access to drops, restocks and members-only pricing.</p>
+      <form class="newsletter-form" id="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit" class="btn btn-accent">Subscribe</button>
+      </form>
+      <p class="newsletter-note">No spam. Unsubscribe anytime. This is a demo form.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Urban<span class="dot" style="color:var(--emerald-bright);">Cart</span></a>
+        <p>Modern essentials for city life — apparel, footwear, accessories and electronics, chosen for how they wear, not just how they photograph.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?cat=Men">Men</a></li>
+          <li><a href="shop.html?cat=Women">Women</a></li>
+          <li><a href="shop.html?cat=Footwear">Footwear</a></li>
+          <li><a href="shop.html?cat=Electronics">Electronics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html#faq">FAQs</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size:14.5px; margin-bottom:16px;">Join our list for exclusive offers and new arrivals.</p>
+        <a href="#newsletter" class="btn btn-outline btn-sm" style="border-color:rgba(255,255,255,0.2); color:#fff;">Subscribe</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 UrbanCart. All rights reserved. Demo project — not a real store.</span>
+      <div class="footer-pay">
+        <span>VISA</span><span>MC</span><span>PAYPAL</span><span>AMEX</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- Quick View Modal -->
+<div class="modal-overlay" id="quick-view-modal">
+  <div class="modal-box">
+    <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-img"><img src="" alt="Quick view product"></div>
+    <div class="modal-info">
+      <span class="product-cat qv-cat">Category</span>
+      <h2 class="qv-name">Product name</h2>
+      <div class="product-rating"><span class="stars qv-stars"></span> <span class="qv-reviews"></span></div>
+      <div class="product-price-row">
+        <span class="price-now qv-price-now"></span>
+        <span class="price-old qv-price-old"></span>
+      </div>
+      <p class="desc qv-desc"></p>
+      <div class="modal-qty">
+        <span style="font-size:13px; font-weight:600;">Quantity</span>
+        <div class="qty-control">
+          <button data-action="dec">−</button>
+          <input type="text" value="1" readonly>
+          <button data-action="inc">+</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-primary btn-block qv-add-cart"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+        <button class="btn btn-outline qv-add-wish"><i class="fa-solid fa-heart"></i></button>
+      </div>
+      <a href="#" class="qv-view-link" style="margin-top:16px; font-size:13.5px; text-align:center; color:var(--emerald-deep); font-weight:600;">View Full Details →</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/darkmode.js"></script>
+<script>
+  // Populate homepage product sections
+  document.addEventListener("DOMContentLoaded", () => {
+    const featured = PRODUCTS.slice(0, 8);
+    const bestsellers = [...PRODUCTS].sort((a,b) => b.reviews - a.reviews).slice(0, 4);
+    renderProductGrid(document.getElementById("featured-products"), featured);
+    renderProductGrid(document.getElementById("bestseller-products"), bestsellers);
+  });
+</script>
+</body>
+</html>

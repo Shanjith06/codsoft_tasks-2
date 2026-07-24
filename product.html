@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details — UrbanCart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="product">
+
+<div id="loading-screen">
+  <div class="loader-mark">Urban<span>Cart</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<header id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">Urban<span class="dot">Cart</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="dm-toggle" title="Toggle dark mode"><span class="dm-knob"><i class="fa-solid fa-sun"></i></span></button>
+      <button class="icon-btn" id="search-trigger" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="icon-btn" id="wishlist-trigger" title="Wishlist" style="position:relative;">
+        <i class="fa-solid fa-heart"></i><span class="count-badge wishlist-count">0</span>
+      </button>
+      <a href="cart.html" class="icon-btn" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i><span class="count-badge cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<nav class="mobile-drawer" id="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart</a>
+</nav>
+
+<div class="search-overlay" id="search-overlay">
+  <div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass" style="color:var(--text-muted)"></i>
+      <input type="text" id="search-input" placeholder="Search for products, categories...">
+      <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="search-results" style="width:min(640px,90vw); margin-top:10px;"></div>
+  </div>
+</div>
+
+<div class="page-header" style="padding-top:calc(var(--nav-h) + 30px); padding-bottom:0; text-align:left; background:transparent; border:none;">
+  <div class="container">
+    <div class="breadcrumb" style="justify-content:flex-start;">
+      <a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><span id="crumb-name">Product</span>
+    </div>
+  </div>
+</div>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="product-details">
+      <!-- Gallery -->
+      <div>
+        <div class="gallery-main">
+          <img id="gallery-main-img" src="" alt="Product image">
+        </div>
+        <div class="gallery-thumbs" id="gallery-thumbs"></div>
+      </div>
+
+      <!-- Info -->
+      <div class="pd-info">
+        <span class="product-cat" id="pd-cat">Category</span>
+        <h1 id="pd-name">Product Name</h1>
+        <div class="pd-rating-row">
+          <span class="stars" id="pd-stars" style="color:var(--gold);"></span>
+          <span id="pd-rating-num"></span>
+          <span id="pd-reviews-count"></span>
+        </div>
+        <div class="pd-price-row">
+          <span class="price-now" id="pd-price"></span>
+          <span class="price-old" id="pd-old-price"></span>
+          <span class="pd-save-tag" id="pd-save-tag"></span>
+        </div>
+        <p class="pd-desc" id="pd-desc"></p>
+
+        <ul class="pd-meta-list">
+          <li><b>Availability</b> <span style="color:var(--emerald-deep);"><i class="fa-solid fa-circle-check"></i> In Stock</span></li>
+          <li><b>SKU</b> <span id="pd-sku" style="font-family:var(--font-mono);"></span></li>
+          <li><b>Shipping</b> <span>Free over $75 · Delivered in 3–5 days</span></li>
+        </ul>
+
+        <div class="pd-colors">
+          <div class="color-dot active" style="background:#0B0F0D;" title="Ink"></div>
+          <div class="color-dot" style="background:#0E9F6E;" title="Emerald"></div>
+          <div class="color-dot" style="background:#E8B740;" title="Gold"></div>
+          <div class="color-dot" style="background:#C7CFC9;" title="Stone"></div>
+        </div>
+
+        <div class="pd-sizes">
+          <div class="size-box active">S</div>
+          <div class="size-box">M</div>
+          <div class="size-box">L</div>
+          <div class="size-box">XL</div>
+        </div>
+
+        <div class="pd-actions">
+          <div class="qty-control" style="flex-shrink:0;">
+            <button data-action="dec">−</button>
+            <input type="text" id="pd-qty" value="1" readonly>
+            <button data-action="inc">+</button>
+          </div>
+          <button class="btn btn-primary btn-block" id="pd-add-cart"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+          <button class="btn btn-outline" id="pd-add-wish"><i class="fa-solid fa-heart"></i></button>
+        </div>
+
+        <div class="pd-perks">
+          <div class="pd-perk"><i class="fa-solid fa-rotate-left"></i> Free 30-day returns</div>
+          <div class="pd-perk"><i class="fa-solid fa-lock"></i> Secure demo checkout</div>
+          <div class="pd-perk"><i class="fa-solid fa-leaf"></i> Made with recycled materials</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="tab-description">Description</button>
+        <button class="tab-btn" data-tab="tab-specs">Specifications</button>
+        <button class="tab-btn" data-tab="tab-reviews">Ratings &amp; Reviews</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-description">
+        <p id="tab-desc-text" style="max-width:760px; color:var(--text-muted); line-height:1.8;"></p>
+      </div>
+
+      <div class="tab-panel" id="tab-specs">
+        <table class="spec-table">
+          <tr><td>Material</td><td>Premium blended fabric, detailed on product tag</td></tr>
+          <tr><td>Care Instructions</td><td>Machine wash cold, tumble dry low</td></tr>
+          <tr><td>Origin</td><td>Designed in-house, ethically manufactured</td></tr>
+          <tr><td>Fit</td><td>True to size — see size guide for details</td></tr>
+          <tr><td>Weight</td><td>0.4 kg approx.</td></tr>
+          <tr><td>Warranty</td><td>1-year limited manufacturer warranty</td></tr>
+        </table>
+      </div>
+
+      <div class="tab-panel" id="tab-reviews">
+        <div class="review-summary">
+          <div class="review-score">
+            <b id="rev-avg"></b>
+            <span class="stars" id="rev-avg-stars" style="color:var(--gold);"></span>
+            <div style="font-size:13px;color:var(--text-muted); margin-top:6px;" id="rev-total"></div>
+          </div>
+          <div class="review-bars">
+            <div class="review-bar-row"><span>5★</span><div class="review-bar-track"><div class="review-bar-fill" style="width:72%;"></div></div><span>72%</span></div>
+            <div class="review-bar-row"><span>4★</span><div class="review-bar-track"><div class="review-bar-fill" style="width:18%;"></div></div><span>18%</span></div>
+            <div class="review-bar-row"><span>3★</span><div class="review-bar-track"><div class="review-bar-fill" style="width:6%;"></div></div><span>6%</span></div>
+            <div class="review-bar-row"><span>2★</span><div class="review-bar-track"><div class="review-bar-fill" style="width:3%;"></div></div><span>3%</span></div>
+            <div class="review-bar-row"><span>1★</span><div class="review-bar-track"><div class="review-bar-fill" style="width:1%;"></div></div><span>1%</span></div>
+          </div>
+        </div>
+
+        <div class="review-item">
+          <div class="rev-head">
+            <img src="https://picsum.photos/seed/rev-1/100/100" alt="Reviewer">
+            <div><div class="rev-name">Alex Morgan</div><div class="rev-date">2 weeks ago</div></div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p style="margin-top:8px; color:var(--text-muted); font-size:14.5px;">Exactly as pictured and fits true to size. The material feels much more premium than the price suggests.</p>
+        </div>
+        <div class="review-item">
+          <div class="rev-head">
+            <img src="https://picsum.photos/seed/rev-2/100/100" alt="Reviewer">
+            <div><div class="rev-name">Jordan Lee</div><div class="rev-date">1 month ago</div></div>
+          </div>
+          <div class="stars">★★★★☆</div>
+          <p style="margin-top:8px; color:var(--text-muted); font-size:14.5px;">Great value overall. Shipping took a couple days longer than expected but the product itself is solid.</p>
+        </div>
+        <div class="review-item">
+          <div class="rev-head">
+            <img src="https://picsum.photos/seed/rev-3/100/100" alt="Reviewer">
+            <div><div class="rev-name">Sam Okafor</div><div class="rev-date">2 months ago</div></div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p style="margin-top:8px; color:var(--text-muted); font-size:14.5px;">Second time ordering this. Consistent quality and the packaging is genuinely nice to unbox.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products -->
+<section class="section" style="background:var(--paper-dim);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">You May Also Like</span><h2>Related Products</h2></div>
+    </div>
+    <div class="product-grid" id="related-products"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Urban<span class="dot" style="color:var(--emerald-bright);">Cart</span></a>
+        <p>Modern essentials for city life — apparel, footwear, accessories and electronics, chosen for how they wear, not just how they photograph.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?cat=Men">Men</a></li>
+          <li><a href="shop.html?cat=Women">Women</a></li>
+          <li><a href="shop.html?cat=Footwear">Footwear</a></li>
+          <li><a href="shop.html?cat=Electronics">Electronics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html#faq">FAQs</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size:14.5px; margin-bottom:16px;">Join our list for exclusive offers and new arrivals.</p>
+        <a href="index.html#newsletter" class="btn btn-outline btn-sm" style="border-color:rgba(255,255,255,0.2); color:#fff;">Subscribe</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 UrbanCart. All rights reserved. Demo project — not a real store.</span>
+      <div class="footer-pay"><span>VISA</span><span>MC</span><span>PAYPAL</span><span>AMEX</span></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<div class="modal-overlay" id="quick-view-modal">
+  <div class="modal-box">
+    <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-img"><img src="" alt="Quick view product"></div>
+    <div class="modal-info">
+      <span class="product-cat qv-cat">Category</span>
+      <h2 class="qv-name">Product name</h2>
+      <div class="product-rating"><span class="stars qv-stars"></span> <span class="qv-reviews"></span></div>
+      <div class="product-price-row">
+        <span class="price-now qv-price-now"></span>
+        <span class="price-old qv-price-old"></span>
+      </div>
+      <p class="desc qv-desc"></p>
+      <div class="modal-qty">
+        <span style="font-size:13px; font-weight:600;">Quantity</span>
+        <div class="qty-control">
+          <button data-action="dec">−</button>
+          <input type="text" value="1" readonly>
+          <button data-action="inc">+</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-primary btn-block qv-add-cart"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+        <button class="btn btn-outline qv-add-wish"><i class="fa-solid fa-heart"></i></button>
+      </div>
+      <a href="#" class="qv-view-link" style="margin-top:16px; font-size:13.5px; text-align:center; color:var(--emerald-deep); font-weight:600;">View Full Details →</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/darkmode.js"></script>
+<script>
+(function productPage(){
+  const params = new URLSearchParams(location.search);
+  const id = Number(params.get("id")) || PRODUCTS[0].id;
+  const p = getProductById(id) || PRODUCTS[0];
+
+  document.title = `${p.name} — UrbanCart`;
+  document.getElementById("crumb-name").textContent = p.name;
+  document.getElementById("pd-cat").textContent = p.cat;
+  document.getElementById("pd-name").textContent = p.name;
+  document.getElementById("pd-stars").textContent = starString(p.rating);
+  document.getElementById("pd-rating-num").textContent = p.rating.toFixed(1);
+  document.getElementById("pd-reviews-count").textContent = `(${p.reviews} reviews)`;
+  document.getElementById("pd-price").textContent = formatPrice(p.price);
+  document.getElementById("pd-sku").textContent = "UC-" + String(p.id).padStart(5, "0");
+  document.getElementById("pd-desc").textContent = p.desc;
+  document.getElementById("tab-desc-text").textContent = p.desc + " Designed for everyday durability, each piece is quality-checked before it ships and backed by our 30-day return policy.";
+  document.getElementById("rev-avg").textContent = p.rating.toFixed(1);
+  document.getElementById("rev-avg-stars").textContent = starString(p.rating);
+  document.getElementById("rev-total").textContent = `Based on ${p.reviews} reviews`;
+
+  const oldEl = document.getElementById("pd-old-price");
+  const saveTag = document.getElementById("pd-save-tag");
+  if(p.old > 0){
+    oldEl.textContent = formatPrice(p.old);
+    const pct = discountPct(p.price, p.old);
+    saveTag.textContent = `Save ${pct}%`;
+  } else {
+    oldEl.style.display = "none";
+    saveTag.style.display = "none";
+  }
+
+  initProductGallery(productGallery(p));
+
+  // Wishlist state
+  const wishBtn = document.getElementById("pd-add-wish");
+  if(Wishlist.has(p.id)) wishBtn.classList.add("active");
+  wishBtn.addEventListener("click", () => {
+    const active = Wishlist.toggle(p.id);
+    wishBtn.classList.toggle("active", active);
+    showToast(active ? "Added to wishlist" : "Removed from wishlist", "fa-heart");
+  });
+
+  // Add to cart
+  document.getElementById("pd-add-cart").addEventListener("click", () => {
+    const qty = Number(document.getElementById("pd-qty").value) || 1;
+    Cart.add(p.id, qty);
+    showToast(`${p.name} added to cart`, "fa-bag-shopping");
+  });
+
+  // Qty controls
+  document.querySelectorAll(".pd-actions .qty-control button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const input = document.getElementById("pd-qty");
+      let val = Number(input.value) || 1;
+      val = btn.dataset.action === "inc" ? val + 1 : Math.max(1, val - 1);
+      input.value = val;
+    });
+  });
+
+  // Color / size selection (UI only)
+  document.querySelectorAll(".color-dot").forEach(dot => {
+    dot.addEventListener("click", () => {
+      document.querySelectorAll(".color-dot").forEach(d => d.classList.remove("active"));
+      dot.classList.add("active");
+    });
+  });
+  document.querySelectorAll(".size-box").forEach(box => {
+    box.addEventListener("click", () => {
+      document.querySelectorAll(".size-box").forEach(b => b.classList.remove("active"));
+      box.classList.add("active");
+    });
+  });
+
+  // Related products: same category, excluding current
+  const related = PRODUCTS.filter(rp => rp.cat === p.cat && rp.id !== p.id).slice(0, 4);
+  const fallback = related.length ? related : PRODUCTS.filter(rp => rp.id !== p.id).slice(0, 4);
+  renderProductGrid(document.getElementById("related-products"), fallback);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — UrbanCart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="about">
+
+<div id="loading-screen">
+  <div class="loader-mark">Urban<span>Cart</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<header id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">Urban<span class="dot">Cart</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="dm-toggle" title="Toggle dark mode"><span class="dm-knob"><i class="fa-solid fa-sun"></i></span></button>
+      <button class="icon-btn" id="search-trigger" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="icon-btn" id="wishlist-trigger" title="Wishlist" style="position:relative;">
+        <i class="fa-solid fa-heart"></i><span class="count-badge wishlist-count">0</span>
+      </button>
+      <a href="cart.html" class="icon-btn" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i><span class="count-badge cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<nav class="mobile-drawer" id="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart</a>
+</nav>
+
+<div class="search-overlay" id="search-overlay">
+  <div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass" style="color:var(--text-muted)"></i>
+      <input type="text" id="search-input" placeholder="Search for products, categories...">
+      <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="search-results" style="width:min(640px,90vw); margin-top:10px;"></div>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="container">
+    <span class="eyebrow">Our Story</span>
+    <h1>Built for people who live in motion</h1>
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>About</span></div>
+  </div>
+</div>
+
+<!-- Story -->
+<section class="section">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-img reveal">
+        <img src="https://picsum.photos/seed/about-story/600/560" alt="UrbanCart studio">
+        <div class="float-card glass">
+          <b>2019</b>
+          <span style="font-size:13px; color:var(--text-muted);">Founded in a small studio</span>
+        </div>
+      </div>
+      <div class="reveal stagger-1">
+        <span class="eyebrow">How it started</span>
+        <h2 style="font-size:clamp(26px,3.4vw,40px); margin-bottom:20px;">From a single rack of samples to a full city wardrobe</h2>
+        <p style="color:var(--text-muted); margin-bottom:16px; line-height:1.8;">UrbanCart started as a weekend project between three friends who were tired of choosing between well-made clothes and clothes they could actually afford. We began with a single rack of samples sold out of a shared studio space.</p>
+        <p style="color:var(--text-muted); line-height:1.8;">Today we work with small manufacturing partners across the globe to bring considered, durable pieces to your door — without the markup of traditional retail. This site is a demonstration build showcasing that vision in a fully static, front-end-only format.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section" style="background:var(--paper-dim);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">What Drives Us</span><h2>Mission &amp; Vision</h2></div>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card reveal">
+        <i class="fa-solid fa-bullseye"></i>
+        <h3>Our Mission</h3>
+        <p>To make thoughtfully designed, well-made essentials accessible to everyone — without compromising on comfort, durability or price. Every product we list is chosen because we'd wear it ourselves.</p>
+      </div>
+      <div class="mv-card reveal stagger-1">
+        <i class="fa-solid fa-eye"></i>
+        <h3>Our Vision</h3>
+        <p>A future where shopping for clothes and everyday goods online feels as personal and trustworthy as a favorite neighborhood store — fast, transparent, and built around real customer relationships.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">The Difference</span><h2>Why Choose UrbanCart</h2></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-truck-fast"></i></div>
+        <h4 style="font-size:16px; margin-bottom:8px;">Fast, Free Shipping</h4>
+        <p style="font-size:13.5px; color:var(--text-muted);">Free shipping on all orders over $75, delivered in 3–5 business days.</p>
+      </div>
+      <div class="why-card reveal stagger-1">
+        <div class="why-icon"><i class="fa-solid fa-rotate-left"></i></div>
+        <h4 style="font-size:16px; margin-bottom:8px;">Easy 30-Day Returns</h4>
+        <p style="font-size:13.5px; color:var(--text-muted);">Not the right fit? Send it back within 30 days for a full refund.</p>
+      </div>
+      <div class="why-card reveal stagger-2">
+        <div class="why-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h4 style="font-size:16px; margin-bottom:8px;">Responsibly Made</h4>
+        <p style="font-size:13.5px; color:var(--text-muted);">Recycled and low-impact materials used across the majority of our range.</p>
+      </div>
+      <div class="why-card reveal stagger-3">
+        <div class="why-icon"><i class="fa-solid fa-headset"></i></div>
+        <h4 style="font-size:16px; margin-bottom:8px;">Real Human Support</h4>
+        <p style="font-size:13.5px; color:var(--text-muted);">Reach a real person by chat or email — average reply time under 2 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Counters -->
+<section class="section-tight">
+  <div class="container">
+    <div class="counters-strip reveal">
+      <div class="counters-grid">
+        <div class="counter-item"><b data-count="48" data-suffix="K+">0</b><span>Orders Shipped</span></div>
+        <div class="counter-item"><b data-count="120" data-suffix="+">0</b><span>Cities Served</span></div>
+        <div class="counter-item"><b data-count="99" data-suffix="%">0</b><span>Satisfaction Rate</span></div>
+        <div class="counter-item"><b data-count="7" data-suffix="">0</b><span>Years in Business</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section" style="background:var(--paper-dim);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Meet the People</span><h2>The Team Behind UrbanCart</h2></div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-1/400/460" alt="Team member"></div>
+        <b>Elena Marsh</b><span>Co-Founder &amp; CEO</span>
+        <div class="team-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a></div>
+      </div>
+      <div class="team-card reveal stagger-1">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-2/400/460" alt="Team member"></div>
+        <b>Marcus Webb</b><span>Co-Founder &amp; Design Lead</span>
+        <div class="team-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a></div>
+      </div>
+      <div class="team-card reveal stagger-2">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-3/400/460" alt="Team member"></div>
+        <b>Aisha Patel</b><span>Head of Operations</span>
+        <div class="team-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a></div>
+      </div>
+      <div class="team-card reveal stagger-3">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-4/400/460" alt="Team member"></div>
+        <b>Noah Kim</b><span>Customer Experience</span>
+        <div class="team-social"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Urban<span class="dot" style="color:var(--emerald-bright);">Cart</span></a>
+        <p>Modern essentials for city life — apparel, footwear, accessories and electronics, chosen for how they wear, not just how they photograph.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?cat=Men">Men</a></li>
+          <li><a href="shop.html?cat=Women">Women</a></li>
+          <li><a href="shop.html?cat=Footwear">Footwear</a></li>
+          <li><a href="shop.html?cat=Electronics">Electronics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html#faq">FAQs</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size:14.5px; margin-bottom:16px;">Join our list for exclusive offers and new arrivals.</p>
+        <a href="index.html#newsletter" class="btn btn-outline btn-sm" style="border-color:rgba(255,255,255,0.2); color:#fff;">Subscribe</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 UrbanCart. All rights reserved. Demo project — not a real store.</span>
+      <div class="footer-pay"><span>VISA</span><span>MC</span><span>PAYPAL</span><span>AMEX</span></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="js/script.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/darkmode.js"></script>
+</body>
+</html>

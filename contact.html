@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — UrbanCart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="contact">
+
+<div id="loading-screen">
+  <div class="loader-mark">Urban<span>Cart</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<header id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">Urban<span class="dot">Cart</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="dm-toggle" title="Toggle dark mode"><span class="dm-knob"><i class="fa-solid fa-sun"></i></span></button>
+      <button class="icon-btn" id="search-trigger" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="icon-btn" id="wishlist-trigger" title="Wishlist" style="position:relative;">
+        <i class="fa-solid fa-heart"></i><span class="count-badge wishlist-count">0</span>
+      </button>
+      <a href="cart.html" class="icon-btn" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i><span class="count-badge cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<nav class="mobile-drawer" id="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart</a>
+</nav>
+
+<div class="search-overlay" id="search-overlay">
+  <div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass" style="color:var(--text-muted)"></i>
+      <input type="text" id="search-input" placeholder="Search for products, categories...">
+      <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="search-results" style="width:min(640px,90vw); margin-top:10px;"></div>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="container">
+    <span class="eyebrow">We'd Love to Hear From You</span>
+    <h1>Get in Touch</h1>
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+      <!-- Form -->
+      <div class="contact-form-box reveal">
+        <h3 style="font-size:22px; margin-bottom:6px;">Send us a message</h3>
+        <p style="color:var(--text-muted); font-size:14px; margin-bottom:24px;">Fill out the form and our team will get back to you within one business day.</p>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group"><label>Full Name</label><input type="text" placeholder="Jane Doe" required></div>
+            <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@email.com" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full"><label>Subject</label>
+              <select required>
+                <option value="">Choose a topic</option>
+                <option>Order Inquiry</option>
+                <option>Returns &amp; Exchanges</option>
+                <option>Product Question</option>
+                <option>Partnership</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label>Message</label>
+              <textarea rows="5" placeholder="How can we help?" required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-accent btn-block"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+
+      <!-- Info -->
+      <div class="reveal stagger-1">
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div><b>Visit Our Store</b><span>142 Market Street, Suite 300, San Francisco, CA 94103</span></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
+            <div><b>Call Us</b><span>+1 (415) 555-0192</span></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div><b>Email Us</b><span>hello@urbancart-demo.com</span></div>
+          </div>
+        </div>
+
+        <div class="map-placeholder">
+          <i class="fa-solid fa-map-location-dot" style="font-size:34px;"></i>
+          <span>Store location map placeholder</span>
+        </div>
+
+        <h4 style="font-size:16px; margin-bottom:16px;">Business Hours</h4>
+        <div class="hours-list">
+          <div class="hours-row"><b>Monday – Friday</b><span>9:00 AM – 8:00 PM</span></div>
+          <div class="hours-row"><b>Saturday</b><span>10:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><b>Sunday</b><span>11:00 AM – 5:00 PM</span></div>
+        </div>
+
+        <h4 style="font-size:16px; margin:26px 0 14px;">Follow Us</h4>
+        <div class="footer-social" style="margin-top:0;">
+          <a href="#" style="background:var(--surface-alt); color:var(--text-primary);"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" style="background:var(--surface-alt); color:var(--text-primary);"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" style="background:var(--surface-alt); color:var(--text-primary);"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" style="background:var(--surface-alt); color:var(--text-primary);"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--paper-dim);" id="faq">
+  <div class="container">
+    <div class="section-head reveal" style="justify-content:center; text-align:center; flex-direction:column;">
+      <span class="eyebrow" style="justify-content:center;">Need Help?</span>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q"><span>What is your return policy?</span><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>We accept returns within 30 days of delivery for a full refund, provided items are unworn and in original packaging. This is a demo site, so returns are illustrative only.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>How long does shipping take?</span><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Standard shipping typically takes 3–5 business days. Orders over $75 ship free; expedited options are shown at checkout.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Do you ship internationally?</span><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>We currently ship within the United States and Canada. International shipping is on our roadmap for a future release.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>How do I track my order?</span><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Once your order ships, you'll receive a tracking link by email. In this demo, checkout and order tracking are for illustration only.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Can I change or cancel my order?</span><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Orders can be modified within one hour of placing them by contacting support directly — after that, our fulfillment team begins processing.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Urban<span class="dot" style="color:var(--emerald-bright);">Cart</span></a>
+        <p>Modern essentials for city life — apparel, footwear, accessories and electronics, chosen for how they wear, not just how they photograph.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?cat=Men">Men</a></li>
+          <li><a href="shop.html?cat=Women">Women</a></li>
+          <li><a href="shop.html?cat=Footwear">Footwear</a></li>
+          <li><a href="shop.html?cat=Electronics">Electronics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html#faq">FAQs</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size:14.5px; margin-bottom:16px;">Join our list for exclusive offers and new arrivals.</p>
+        <a href="index.html#newsletter" class="btn btn-outline btn-sm" style="border-color:rgba(255,255,255,0.2); color:#fff;">Subscribe</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 UrbanCart. All rights reserved. Demo project — not a real store.</span>
+      <div class="footer-pay"><span>VISA</span><span>MC</span><span>PAYPAL</span><span>AMEX</span></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="js/script.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/darkmode.js"></script>
+</body>
+</html>
